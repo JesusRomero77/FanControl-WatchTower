@@ -117,12 +117,19 @@ namespace WatchTower
             UpdatePluginMissingWarning();
         }
 
-        // Muestra el aviso si se conoce la carpeta de FanControl y el plugin no está en su carpeta Plugins.
+        // Muestra el aviso si se conoce la carpeta de FanControl y el plugin no está instalado.
         // Sin carpeta conocida no se puede saber, así que no se muestra nada.
         private void UpdatePluginMissingWarning()
         {
-            pluginMissingLabel.Visible = _fanControlFolder != null &&
-                !File.Exists(Path.Combine(_fanControlFolder, "Plugins", PluginFileName));
+            pluginMissingLabel.Visible = _fanControlFolder != null && !IsPluginInstalled(_fanControlFolder);
+        }
+
+// True si la dll del plugin está en la carpeta Plugins, ya sea suelta (copiada a mano) o dentro de
+// su subcarpeta (como la deja el instalador de plugins de FanControl).
+        private static bool IsPluginInstalled(string fanControlFolder)
+        {
+            return File.Exists(Path.Combine(fanControlFolder, "Plugins", PluginFileName)) || 
+            File.Exists(Path.Combine(fanControlFolder, "Plugins", "DataServer", PluginFileName));
         }
 
         // Al volver a esta pestaña se repite la comprobación, por si el usuario ha instalado el plugin
