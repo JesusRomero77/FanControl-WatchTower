@@ -124,8 +124,8 @@ namespace WatchTower
             pluginMissingLabel.Visible = _fanControlFolder != null && !IsPluginInstalled(_fanControlFolder);
         }
 
-// True si la dll del plugin está en la carpeta Plugins, ya sea suelta (copiada a mano) o dentro de
-// su subcarpeta (como la deja el instalador de plugins de FanControl).
+        // True si la dll del plugin está en la carpeta Plugins, ya sea suelta (copiada a mano) o dentro de
+        // su subcarpeta (como la deja el instalador de plugins de FanControl).
         private static bool IsPluginInstalled(string fanControlFolder)
         {
             return File.Exists(Path.Combine(fanControlFolder, "Plugins", PluginFileName)) || 
