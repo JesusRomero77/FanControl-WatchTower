@@ -43,7 +43,7 @@ namespace WatchTower
                 string cachePath = FanControlLocator.GetCachePath(fanControlFolder);
                 if (!File.Exists(cachePath))
                 {
-                    error = "No existe el archivo CACHE en " + cachePath;
+                    error = string.Format(Translator.Translate(TextId.CacheNotFound), cachePath);
                     return null;
                 }
 

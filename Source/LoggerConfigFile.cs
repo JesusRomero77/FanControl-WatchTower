@@ -53,7 +53,7 @@ namespace WatchTower
                 XDocument document = XDocument.Load(FilePath);
                 if (document.Root == null || document.Root.Name != RootElementName)
                 {
-                    error = "El archivo de configuración no tiene el formato esperado.";
+                    error = Translator.Translate(TextId.LoggerConfigBadFormat);
                     return null;
                 }
                 config.LanguageName = (string)document.Root.Attribute(LanguageAttributeName);

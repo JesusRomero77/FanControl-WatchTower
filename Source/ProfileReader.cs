@@ -54,7 +54,7 @@ namespace WatchTower
                 JObject fanControl = profile[RootKey] as JObject;
                 if (fanControl == null)
                 {
-                    error = "El archivo no tiene el formato de un perfil de FanControl.";
+                    error = Translator.Translate(TextId.ProfileBadFormat);
                     return null;
                 }
 

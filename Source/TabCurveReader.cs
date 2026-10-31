@@ -143,8 +143,8 @@ namespace WatchTower
             ProfileLocation location = ProfileLocator.Locate(_fanControlFolder, out error);
             if (location == null)
             {
-                MessageBox.Show(this, "No se ha podido leer el CACHE de FanControl:\r\n" + error,
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(this, string.Format(Translator.Translate(TextId.CacheReadError), error),
+                    Translator.Translate(TextId.ErrorTitle), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -183,7 +183,7 @@ namespace WatchTower
             ProfileContent content = ProfileReader.Read(selected.FilePath, out error);
             if (content == null)
             {
-                MessageBox.Show(this, error, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(this, error, Translator.Translate(TextId.ErrorTitle), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -192,7 +192,7 @@ namespace WatchTower
             LoggerConfig storedConfig = LoggerConfigFile.Load(out error);
             if (storedConfig == null)
             {
-                MessageBox.Show(this, error, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(this, error, Translator.Translate(TextId.ErrorTitle), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 storedConfig = new LoggerConfig();
             }
 

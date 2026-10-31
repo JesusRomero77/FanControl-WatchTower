@@ -21,7 +21,11 @@ namespace WatchTower
         HelpWindowTitle, HelpRequirementsTitle, HelpRequirementsText, HelpGettingStartedTitle, HelpGettingStartedText,
         HelpSelectProfileTitle, HelpSelectProfileText, HelpConfigureItemsTitle, HelpConfigureItemsText, HelpSaveTitle, HelpSaveText,
         RemoteSensorsWarning, RemotePcName, RemotePcNameHelp, RemoteIp, RemoteIpHelp, RemoteSensorsNote,
-        DataServerPort, DataServerPortHelp, DataServerPassword, DataServerPasswordTooltip, DataServerNote
+        DataServerPort, DataServerPortHelp, DataServerPassword, DataServerPasswordTooltip, DataServerNote, DataServerPluginMissing,
+        ErrorTitle, SelectFanControlTitle, FanControlFileFilter, InvalidPathTitle, InvalidPathMessage, UnsavedChangesMessage,
+        CacheReadError, CacheNotFound, ProfileBadFormat, LoggerConfigBadFormat, ConfigFileBadFormat,
+        RemoteIpIncomplete, DataServerPortInvalid, DataServerPasswordInvalid,
+        RemotePort, RemotePortHelp
 
     }
 

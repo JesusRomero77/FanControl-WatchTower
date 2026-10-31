@@ -13,6 +13,7 @@ namespace WatchTower
         private Label passwordHelpIcon;
         private Label noteLabel;
         private ToolTip toolTip;
+        private System.Windows.Forms.Label pluginMissingLabel;
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -34,6 +35,7 @@ namespace WatchTower
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.passwordHelpIcon = new System.Windows.Forms.Label();
             this.noteLabel = new System.Windows.Forms.Label();
+            this.pluginMissingLabel = new System.Windows.Forms.Label();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
@@ -104,6 +106,19 @@ namespace WatchTower
             this.noteLabel.TabIndex = 6;
             this.noteLabel.UseMnemonic = false;
             // 
+            // pluginMissingLabel
+            // 
+            this.pluginMissingLabel.AutoSize = true;
+            this.pluginMissingLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.pluginMissingLabel.ForeColor = System.Drawing.Color.Firebrick;
+            this.pluginMissingLabel.Location = new System.Drawing.Point(50, 370);
+            this.pluginMissingLabel.MaximumSize = new System.Drawing.Size(685, 0);
+            this.pluginMissingLabel.Name = "pluginMissingLabel";
+            this.pluginMissingLabel.Size = new System.Drawing.Size(685, 21);
+            this.pluginMissingLabel.TabIndex = 7;
+            this.pluginMissingLabel.UseMnemonic = false;
+            this.pluginMissingLabel.Visible = false;
+            // 
             // toolTip
             // 
             this.toolTip.AutoPopDelay = 30000;
@@ -121,6 +136,7 @@ namespace WatchTower
             this.Controls.Add(this.portHelpLabel);
             this.Controls.Add(this.portTextBox);
             this.Controls.Add(this.portLabel);
+            this.Controls.Add(this.pluginMissingLabel);
             this.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "TabDataServer";

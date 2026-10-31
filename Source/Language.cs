@@ -72,14 +72,35 @@ namespace WatchTower
             { TextId.RemotePcNameHelp, "Type 'hostname' in a console on the remote PC." },
             { TextId.RemoteIp, "Remote PC IP:" },
             { TextId.RemoteIpHelp, "Type 'ipconfig' in a console on the remote PC." },
-            { TextId.RemoteSensorsNote, "Fill in at least one of the two; if both are filled in, the IP is used. The port is fixed at 8765. " +
+            { TextId.RemoteSensorsNote, "Fill in at least one of the two; if both are filled in, the IP is used. " +
+                "The port and password must match those set in DataServer, which are configured by running WatchTower on the same PC where DataServer is installed. " +
                 "Restart the FanControl interface after saving for the plugin to read the changes." },
             { TextId.DataServerPort, "Port:" },
-            { TextId.DataServerPortHelp, "Between 1 and 65535. Leave empty to use the default." },
+            { TextId.DataServerPortHelp, "Between 1 and 65535. Leave empty to use the default (8765)." },
             { TextId.DataServerPassword, "Password:" },
             { TextId.DataServerPasswordTooltip, "The current password is \"{0}\". You can change it by typing a new one in this field." },
-            { TextId.DataServerNote, "Anyone who knows the password can connect and read the data. " +
-                "Restart the FanControl interface after saving for the plugin to read the changes." }
+            { TextId.DataServerNote, "This tab must be used with WatchTower running on the same PC where DataServer is installed. " +
+                "Anyone who knows the password can connect and read the data. " +
+                "Restart the FanControl interface after saving for the plugin to read the changes." },
+            { TextId.DataServerPluginMissing, "The DataServer plugin (FanControl.DataServer.dll) was not found in FanControl's Plugins folder. " +
+                "You can set the options here, but they will have no effect until the plugin is installed." },
+                        { TextId.ErrorTitle, "Error" },
+            { TextId.SelectFanControlTitle, "Select the FanControl executable (or a shortcut to it)" },
+            { TextId.FanControlFileFilter, "FanControl.exe or shortcut" },
+            { TextId.InvalidPathTitle, "Invalid path" },
+            { TextId.InvalidPathMessage, "The Configurations folder with the CACHE file was not found next to that executable. " +
+                "Make sure you have chosen FanControl.exe." },
+            { TextId.UnsavedChangesMessage, "There are unsaved changes. Do you want to save them before exiting?" },
+            { TextId.CacheReadError, "Could not read FanControl's CACHE:\r\n{0}" },
+            { TextId.CacheNotFound, "The CACHE file does not exist at {0}" },
+            { TextId.ProfileBadFormat, "The file does not have the format of a FanControl profile." },
+            { TextId.LoggerConfigBadFormat, "The configuration file does not have the expected format." },
+            { TextId.ConfigFileBadFormat, "The file {0} does not have the expected format (the {1} element is missing). It has not been modified." },
+            { TextId.RemoteIpIncomplete, "The remote PC's IP is incomplete: type all four numbers or leave it empty." },
+            { TextId.DataServerPortInvalid, "The port must be a number between {0} and {1}, or be left empty." },
+            { TextId.DataServerPasswordInvalid, "The password can only contain letters, numbers and keyboard symbols, with no spaces or accented characters." },
+            { TextId.RemotePort, "Remote PC port:" },
+            { TextId.RemotePortHelp, "Port DataServer listens on at the remote PC.\r\nLeave empty to use the default (8765)." }
         };
     }
 
@@ -138,14 +159,37 @@ namespace WatchTower
             { TextId.RemotePcNameHelp, "Escribe 'hostname' en una consola del PC remoto." },
             { TextId.RemoteIp, "IP del PC remoto:" },
             { TextId.RemoteIpHelp, "Escribe 'ipconfig' en una consola del PC remoto." },
-            { TextId.RemoteSensorsNote, "Rellena al menos uno de los dos; si están los dos, se usa la IP. El puerto es fijo (8765). " +
+            { TextId.RemoteSensorsNote, "Rellena al menos uno de los dos; si están los dos, se usa la IP. " +
+                "El puerto y la contraseña deben coincidir con los de DataServer, que se configuran ejecutando WatchTower en el mismo PC donde esté instalado DataServer. " +
                 "Reinicia la interfaz de FanControl después de guardar para que el plugin lea los cambios." },
             { TextId.DataServerPort, "Puerto:" },
-            { TextId.DataServerPortHelp, "Entre 1 y 65535. Déjalo vacío para usar el predeterminado." },
+            { TextId.DataServerPortHelp, "Entre 1 y 65535. Déjalo vacío para usar el predeterminado (8765)." },
             { TextId.DataServerPassword, "Contraseña:" },
             { TextId.DataServerPasswordTooltip, "La contraseña actual es \"{0}\". Puedes cambiarla escribiendo otra en este campo." },
-            { TextId.DataServerNote, "Quien conozca la contraseña podrá conectar y leer los datos. " +
-                "Reinicia la interfaz de FanControl después de guardar para que el plugin lea los cambios." }
+            { TextId.DataServerNote, "Esta pestaña debe usarse con WatchTower ejecutándose en el mismo PC donde esté instalado DataServer. " +
+                "Quien conozca la contraseña podrá conectar y leer los datos. " +
+                "Reinicia la interfaz de FanControl después de guardar para que el plugin lea los cambios." },
+            { TextId.DataServerPluginMissing, "No se ha encontrado el plugin DataServer (FanControl.DataServer.dll) " +
+                "en la carpeta Plugins de FanControl. " +
+                "Puedes configurar las opciones aquí, pero no tendrán efecto hasta que el plugin esté instalado." },
+            { TextId.ErrorTitle, "Error" },
+            { TextId.SelectFanControlTitle, "Selecciona el ejecutable de FanControl (o un acceso directo)" },
+            { TextId.FanControlFileFilter, "FanControl.exe o acceso directo" },
+            { TextId.InvalidPathTitle, "Ruta no válida" },
+            { TextId.InvalidPathMessage, "No se ha encontrado la carpeta Configurations con el archivo CACHE junto a ese ejecutable. " +
+                "Comprueba que has elegido FanControl.exe." },
+            { TextId.UnsavedChangesMessage, "Hay cambios sin guardar. ¿Quieres guardarlos antes de salir?" },
+            { TextId.CacheReadError, "No se ha podido leer el CACHE de FanControl:\r\n{0}" },
+            { TextId.CacheNotFound, "No existe el archivo CACHE en {0}" },
+            { TextId.ProfileBadFormat, "El archivo no tiene el formato de un perfil de FanControl." },
+            { TextId.LoggerConfigBadFormat, "El archivo de configuración no tiene el formato esperado." },
+            { TextId.ConfigFileBadFormat, "El archivo {0} no tiene el formato esperado (falta el elemento {1}). No se ha modificado." },
+            { TextId.RemoteIpIncomplete, "La IP del PC remoto está incompleta: escribe los cuatro números o déjala vacía." },
+            { TextId.DataServerPortInvalid, "El puerto debe ser un número entre {0} y {1}, o dejarse vacío." },
+            { TextId.DataServerPasswordInvalid, "La contraseña solo puede contener letras, números y símbolos del teclado, " +
+                "sin espacios ni acentos." },
+            { TextId.RemotePort, "Puerto del PC remoto:" },
+            { TextId.RemotePortHelp, "Puerto en el que escucha DataServer en el PC remoto.\r\nDéjalo vacío para usar el predeterminado (8765)." }
         };
     }
 }

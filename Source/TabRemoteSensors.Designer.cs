@@ -24,6 +24,9 @@
             this.ipLabel = new System.Windows.Forms.Label();
             this.ipAddressBox = new WatchTower.IpAddressBox();
             this.ipHelpLabel = new System.Windows.Forms.Label();
+            this.portLabel = new System.Windows.Forms.Label();
+            this.portTextBox = new System.Windows.Forms.TextBox();
+            this.portHelpLabel = new System.Windows.Forms.Label();
             this.noteLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -42,7 +45,7 @@
             // pcNameLabel
             // 
             this.pcNameLabel.AutoSize = true;
-            this.pcNameLabel.Location = new System.Drawing.Point(50, 160);
+            this.pcNameLabel.Location = new System.Drawing.Point(50, 130);
             this.pcNameLabel.Name = "pcNameLabel";
             this.pcNameLabel.Size = new System.Drawing.Size(120, 21);
             this.pcNameLabel.TabIndex = 1;
@@ -50,7 +53,7 @@
             // 
             // pcNameTextBox
             // 
-            this.pcNameTextBox.Location = new System.Drawing.Point(290, 157);
+            this.pcNameTextBox.Location = new System.Drawing.Point(290, 127);
             this.pcNameTextBox.Name = "pcNameTextBox";
             this.pcNameTextBox.Size = new System.Drawing.Size(300, 29);
             this.pcNameTextBox.TabIndex = 2;
@@ -60,7 +63,7 @@
             this.pcNameHelpLabel.AutoSize = true;
             this.pcNameHelpLabel.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.pcNameHelpLabel.ForeColor = System.Drawing.Color.Black;
-            this.pcNameHelpLabel.Location = new System.Drawing.Point(290, 190);
+            this.pcNameHelpLabel.Location = new System.Drawing.Point(290, 160);
             this.pcNameHelpLabel.Name = "pcNameHelpLabel";
             this.pcNameHelpLabel.Size = new System.Drawing.Size(60, 19);
             this.pcNameHelpLabel.TabIndex = 3;
@@ -69,7 +72,7 @@
             // ipLabel
             // 
             this.ipLabel.AutoSize = true;
-            this.ipLabel.Location = new System.Drawing.Point(50, 240);
+            this.ipLabel.Location = new System.Drawing.Point(50, 190);
             this.ipLabel.Name = "ipLabel";
             this.ipLabel.Size = new System.Drawing.Size(120, 21);
             this.ipLabel.TabIndex = 4;
@@ -79,7 +82,7 @@
             // 
             this.ipAddressBox.BackColor = System.Drawing.SystemColors.Window;
             this.ipAddressBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.ipAddressBox.Location = new System.Drawing.Point(290, 237);
+            this.ipAddressBox.Location = new System.Drawing.Point(290, 187);
             this.ipAddressBox.Name = "ipAddressBox";
             this.ipAddressBox.Size = new System.Drawing.Size(300, 31);
             this.ipAddressBox.TabIndex = 5;
@@ -89,22 +92,51 @@
             this.ipHelpLabel.AutoSize = true;
             this.ipHelpLabel.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.ipHelpLabel.ForeColor = System.Drawing.Color.Black;
-            this.ipHelpLabel.Location = new System.Drawing.Point(290, 272);
+            this.ipHelpLabel.Location = new System.Drawing.Point(290, 222);
             this.ipHelpLabel.Name = "ipHelpLabel";
             this.ipHelpLabel.Size = new System.Drawing.Size(60, 19);
             this.ipHelpLabel.TabIndex = 6;
             this.ipHelpLabel.UseMnemonic = false;
+            // 
+            // portLabel
+            // 
+            this.portLabel.AutoSize = true;
+            this.portLabel.Location = new System.Drawing.Point(50, 250);
+            this.portLabel.Name = "portLabel";
+            this.portLabel.Size = new System.Drawing.Size(120, 21);
+            this.portLabel.TabIndex = 7;
+            this.portLabel.UseMnemonic = false;
+            // 
+            // portTextBox
+            // 
+            this.portTextBox.Location = new System.Drawing.Point(290, 247);
+            this.portTextBox.MaxLength = 5;
+            this.portTextBox.Name = "portTextBox";
+            this.portTextBox.Size = new System.Drawing.Size(300, 29);
+            this.portTextBox.TabIndex = 8;
+            this.portTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PortTextBox_KeyPress);
+            // 
+            // portHelpLabel
+            // 
+            this.portHelpLabel.AutoSize = true;
+            this.portHelpLabel.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.portHelpLabel.ForeColor = System.Drawing.Color.Black;
+            this.portHelpLabel.Location = new System.Drawing.Point(290, 282);
+            this.portHelpLabel.Name = "portHelpLabel";
+            this.portHelpLabel.Size = new System.Drawing.Size(60, 19);
+            this.portHelpLabel.TabIndex = 9;
+            this.portHelpLabel.UseMnemonic = false;
             // 
             // noteLabel
             // 
             this.noteLabel.AutoSize = true;
             this.noteLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.noteLabel.ForeColor = System.Drawing.Color.Black;
-            this.noteLabel.Location = new System.Drawing.Point(50, 330);
+            this.noteLabel.Location = new System.Drawing.Point(50, 350);
             this.noteLabel.MaximumSize = new System.Drawing.Size(685, 0);
             this.noteLabel.Name = "noteLabel";
             this.noteLabel.Size = new System.Drawing.Size(685, 21);
-            this.noteLabel.TabIndex = 7;
+            this.noteLabel.TabIndex = 10;
             this.noteLabel.UseMnemonic = false;
             // 
             // TabRemoteSensors
@@ -118,6 +150,9 @@
             this.Controls.Add(this.pcNameHelpLabel);
             this.Controls.Add(this.pcNameTextBox);
             this.Controls.Add(this.pcNameLabel);
+            this.Controls.Add(this.portHelpLabel);
+            this.Controls.Add(this.portTextBox);
+            this.Controls.Add(this.portLabel);
             this.Controls.Add(this.warningLabel);
             this.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.Margin = new System.Windows.Forms.Padding(5);
@@ -137,6 +172,9 @@
         private System.Windows.Forms.Label ipLabel;
         private IpAddressBox ipAddressBox;
         private System.Windows.Forms.Label ipHelpLabel;
+        private System.Windows.Forms.Label portLabel;
+        private System.Windows.Forms.TextBox portTextBox;
+        private System.Windows.Forms.Label portHelpLabel;
         private System.Windows.Forms.Label noteLabel;
     }
 }

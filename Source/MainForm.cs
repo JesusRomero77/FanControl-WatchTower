@@ -71,18 +71,16 @@ namespace WatchTower
         {
             using (OpenFileDialog dialog = new OpenFileDialog())
             {
-                dialog.Title = "Selecciona el ejecutable de FanControl (o un acceso directo)";
-                dialog.Filter = "FanControl.exe o acceso directo|*.exe;*.lnk";
+                dialog.Title = Translator.Translate(TextId.SelectFanControlTitle);
+                dialog.Filter = Translator.Translate(TextId.FanControlFileFilter) + "|*.exe;*.lnk";
 
                 if (dialog.ShowDialog(this) != DialogResult.OK) return;
 
                 string folder;
                 if (!FanControlLocator.TryGetFanControlFolder(dialog.FileName, out folder))
                 {
-                    MessageBox.Show(this,
-                        "No se ha encontrado la carpeta Configurations con el archivo CACHE junto a ese ejecutable. " +
-                        "Comprueba que has elegido FanControl.exe.",
-                        "Ruta no válida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(this,Translator.Translate(TextId.InvalidPathMessage),
+                        Translator.Translate(TextId.InvalidPathTitle),MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -117,7 +115,8 @@ namespace WatchTower
 
             if (errors.Count == 0) return true;
 
-            MessageBox.Show(this, string.Join("\r\n", errors), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(this, string.Join("\r\n", errors), Translator.Translate(TextId.ErrorTitle),
+                MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return false;
         }
 
@@ -135,7 +134,7 @@ namespace WatchTower
             if (!_tabs.Any(tab => tab.HasUnsavedChanges)) return;
 
             DialogResult answer = MessageBox.Show(this,
-                "Hay cambios sin guardar. ¿Quieres guardarlos antes de salir?",
+                Translator.Translate(TextId.UnsavedChangesMessage),
                 "WatchTower", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
             if (answer == DialogResult.Cancel)

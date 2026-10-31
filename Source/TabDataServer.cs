@@ -20,6 +20,12 @@ namespace WatchTower
         // Nombre del plugin, que es el título de la pestaña. No se traduce.
         private const string TabTitle = "DataServer";
 
+        // Nombre del archivo del plugin dentro de la carpeta Plugins de FanControl.
+        private const string PluginFileName = "FanControl.DataServer.dll";
+
+        // Carpeta de FanControl indicada por el usuario; null mientras no la haya indicado.
+        private string _fanControlFolder;
+
         // Nombres exactos de los elementos del XML (XmlSerializer distingue mayúsculas).
         private const string RootElementName = "ServerSettings";
         private const string PortElementName = "Port";
@@ -99,13 +105,32 @@ namespace WatchTower
             portHelpLabel.Text = Translator.Translate(TextId.DataServerPortHelp);
             passwordLabel.Text = Translator.Translate(TextId.DataServerPassword);
             noteLabel.Text = Translator.Translate(TextId.DataServerNote);
+            pluginMissingLabel.Text = Translator.Translate(TextId.DataServerPluginMissing);
 
             UpdatePasswordCue();
         }
 
-        // Esta pestaña no usa la carpeta de FanControl.
+        // Recuerda la carpeta de FanControl y comprueba si el plugin está instalado en ella.
         public void SetFanControlFolder(string fanControlFolder)
         {
+            _fanControlFolder = fanControlFolder;
+            UpdatePluginMissingWarning();
+        }
+
+        // Muestra el aviso si se conoce la carpeta de FanControl y el plugin no está en su carpeta Plugins.
+        // Sin carpeta conocida no se puede saber, así que no se muestra nada.
+        private void UpdatePluginMissingWarning()
+        {
+            pluginMissingLabel.Visible = _fanControlFolder != null &&
+                !File.Exists(Path.Combine(_fanControlFolder, "Plugins", PluginFileName));
+        }
+
+        // Al volver a esta pestaña se repite la comprobación, por si el usuario ha instalado el plugin
+        // con WatchTower abierto.
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+            if (Visible) UpdatePluginMissingWarning();
         }
 
         // Pone el texto gris de ejemplo en un TextBox (no hace nada si aún no tiene handle).
@@ -186,7 +211,7 @@ namespace WatchTower
                 int port;
                 if (!TryParsePort(TypedPort, out port))
                 {
-                    error = "El puerto debe ser un número entre " + MinPort + " y " + MaxPort + ", o dejarse vacío.";
+                    error = string.Format(Translator.Translate(TextId.DataServerPortInvalid), MinPort, MaxPort);
                     return false;
                 }
                 normalizedPort = port.ToString(CultureInfo.InvariantCulture);
@@ -194,7 +219,7 @@ namespace WatchTower
 
             if (passwordToWrite.Length > 0 && !IsValidPassword(passwordToWrite))
             {
-                error = "La contraseña solo puede contener letras, números y símbolos del teclado, sin espacios ni acentos.";
+                error = Translator.Translate(TextId.DataServerPasswordInvalid);
                 return false;
             }
 
@@ -205,8 +230,7 @@ namespace WatchTower
 
                 if (root == null || root.Name != RootElementName)
                 {
-                    error = "El archivo DataServerConfig.xml no tiene el formato esperado " +
-                            "(falta el elemento " + RootElementName + "). No se ha modificado.";
+                    error = string.Format(Translator.Translate(TextId.ConfigFileBadFormat),"DataServerConfig.xml", RootElementName);
                     return false;
                 }
 
