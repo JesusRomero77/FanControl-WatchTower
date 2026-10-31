@@ -3,7 +3,7 @@
     <Platform Name="Any CPU" />
     <Platform Name="x64" />
   </Configurations>
-  <Project Path="FanCompanion.csproj" Id="3a1954df-dc6b-450b-bcc1-9e5211949e18">
+  <Project Path="WatchTower.csproj" Id="3a1954df-dc6b-450b-bcc1-9e5211949e18">
     <Platform Solution="*|x64" Project="x64" />
   </Project>
 </Solution>
