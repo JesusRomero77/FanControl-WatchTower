@@ -7,8 +7,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{3A1954DF-DC6B-450B-BCC1-9E5211949E18}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>FanCompanion</RootNamespace>
-    <AssemblyName>FanCompanion</AssemblyName>
+    <RootNamespace>WatchTower</RootNamespace>
+    <AssemblyName>WatchTower</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
