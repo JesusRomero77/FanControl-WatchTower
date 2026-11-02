@@ -92,6 +92,7 @@
     <Compile Include="ConfiguratorForm.Designer.cs">
       <DependentUpon>ConfiguratorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataServerClient.cs" />
     <Compile Include="FanControlLocator.cs" />
     <Compile Include="HelpForm.cs">
       <SubType>Form</SubType>
@@ -109,7 +110,11 @@
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PasswordRules.cs" />
     <Compile Include="ProfileConfigBuilder.cs" />
+    <Compile Include="ProfileConfigPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ProfileItem.cs" />
     <Compile Include="ProfileLocator.cs" />
     <Compile Include="ProfileReader.cs" />
@@ -123,6 +128,8 @@
     <Compile Include="RaisedTabHost.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="RemoteLogFile.cs" />
+    <Compile Include="RemoteLogRecorder.cs" />
     <Compile Include="TabCurveReader.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -134,6 +141,12 @@
     </Compile>
     <Compile Include="TabDataServer.Designer.cs">
       <DependentUpon>TabDataServer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TabRemoteSensorLogger.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TabRemoteSensorLogger.Designer.cs">
+      <DependentUpon>TabRemoteSensorLogger.cs</DependentUpon>
     </Compile>
     <Compile Include="TabRemoteSensors.cs">
       <SubType>UserControl</SubType>

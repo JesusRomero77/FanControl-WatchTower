@@ -44,6 +44,7 @@ namespace WatchTower
             AddTab(new TabCurveReader());
             AddTab(new TabRemoteSensors());
             AddTab(new TabDataServer());
+            AddTab(new TabRemoteSensorLogger());
         }
 
         // Añade una pestaña al control de pestañas y la conecta con la ventana. Se pide un UserControl que

@@ -68,6 +68,11 @@ namespace WatchTower
         public List<ProfileConfig> Profiles { get; } = new List<ProfileConfig>();
 
         /// <summary>
+        /// Conexión al DataServer remoto. Solo la usa el grabador remoto; es null en el XML de CurveReader.
+        /// </summary>
+        public RemoteConnectionConfig RemoteConnection { get; set; }
+
+        /// <summary>
         /// Devuelve la configuración del perfil indicado, o null si no tiene ninguna guardada.
         /// </summary>
         public ProfileConfig FindProfile(string fileName)
@@ -77,5 +82,17 @@ namespace WatchTower
 
             return null;
         }
+    }
+
+    /// <summary>
+    /// Datos de conexión al DataServer de otro PC, que usa la pestaña del grabador remoto. Todos son
+    /// texto, igual que en RemoteSensorsConfig.xml: el puerto vacío significa "el de por defecto".
+    /// </summary>
+    public class RemoteConnectionConfig
+    {
+        public string PcName { get; set; } = "";
+        public string Ip { get; set; } = "";
+        public string Port { get; set; } = "";
+        public string Password { get; set; } = "";
     }
 }

@@ -27,36 +27,61 @@ namespace WatchTower
         private const string NameAttributeName = "Name";
         private const string IncludedInLogAttributeName = "IncludedInLog";
         private const string ThresholdAttributeName = "Threshold";
+        private const string RemoteFileName = "RemoteSensorLoggerConfig.xml";
+        private const string ConnectionElementName = "Connection";
+        private const string PcNameAttributeName = "PcName";
+        private const string IpAttributeName = "Ip";
+        private const string PortAttributeName = "Port";
+        private const string PasswordAttributeName = "Password";
 
-        // Ruta completa del archivo. Se calcula con la carpeta AppData del usuario actual.
-        public static string FilePath
+        // Ruta del archivo de CurveReader y del archivo del grabador remoto, en la carpeta AppData del usuario actual.
+        public static string FilePath => GetPath(FileName);
+        public static string RemoteFilePath => GetPath(RemoteFileName);
+
+        private static string GetPath(string fileName)
         {
-            get
-            {
-                string appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-                return Path.Combine(appDataFolder, FolderName, FileName);
-            }
+            string appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            return Path.Combine(appDataFolder, FolderName, fileName);
+        }
+
+        /// <summary>Lee la configuración de CurveReader (ver la versión con ruta).</summary>
+        public static LoggerConfig Load(out string error)
+        {
+            return Load(FilePath, out error);
         }
 
         /// <summary>
-        /// Lee la configuración. Si el archivo no existe devuelve una configuración vacía (sin
+        /// Lee la configuración del archivo indicado. Si no existe devuelve una configuración vacía (sin
         /// perfiles). Devuelve null, con el motivo en 'error', si existe pero no se puede leer.
         /// </summary>
-        public static LoggerConfig Load(out string error)
+        public static LoggerConfig Load(string filePath, out string error)
         {
             error = null;
             LoggerConfig config = new LoggerConfig();
-            if (!File.Exists(FilePath)) return config;
+            if (!File.Exists(filePath)) return config;
 
             try
             {
-                XDocument document = XDocument.Load(FilePath);
+                XDocument document = XDocument.Load(filePath);
                 if (document.Root == null || document.Root.Name != RootElementName)
                 {
                     error = Translator.Translate(TextId.LoggerConfigBadFormat);
                     return null;
                 }
                 config.LanguageName = (string)document.Root.Attribute(LanguageAttributeName);
+
+                XElement connectionElement = document.Root.Element(ConnectionElementName);
+                if (connectionElement != null)
+                {
+                    config.RemoteConnection = new RemoteConnectionConfig
+                    {
+                        PcName = ((string)connectionElement.Attribute(PcNameAttributeName) ?? "").Trim(),
+                        Ip = ((string)connectionElement.Attribute(IpAttributeName) ?? "").Trim(),
+                        Port = ((string)connectionElement.Attribute(PortAttributeName) ?? "").Trim(),
+                        Password = ((string)connectionElement.Attribute(PasswordAttributeName) ?? "").Trim()
+                    };
+                }
+
                 foreach (XElement profileElement in document.Root.Elements(ProfileElementName))
                 {
                     string fileName = (string)profileElement.Attribute(FileNameAttributeName);
@@ -77,12 +102,18 @@ namespace WatchTower
             }
         }
 
+        /// <summary>Guarda la configuración de CurveReader (ver la versión con ruta).</summary>
+        public static bool Save(LoggerConfig config, out string error)
+        {
+            return Save(FilePath, config, out error);
+        }
+
         /// <summary>
-        /// Guarda la configuración. Escribe primero en un archivo temporal y después sustituye
-        /// al definitivo, para que el archivo nunca quede a medias. Devuelve false, con el
+        /// Guarda la configuración en el archivo indicado. Escribe primero en un archivo temporal y después
+        /// sustituye al definitivo, para que el archivo nunca quede a medias. Devuelve false, con el
         /// motivo en 'error', si no se ha podido guardar.
         /// </summary>
-        public static bool Save(LoggerConfig config, out string error)
+        public static bool Save(string filePath, LoggerConfig config, out string error)
         {
             error = null;
             try
@@ -93,6 +124,15 @@ namespace WatchTower
                 if (!string.IsNullOrWhiteSpace(config.LanguageName))
                     root.Add(new XAttribute(LanguageAttributeName, config.LanguageName));
 
+                if (config.RemoteConnection != null)
+                {
+                    root.Add(new XElement(ConnectionElementName,
+                        new XAttribute(PcNameAttributeName, config.RemoteConnection.PcName ?? string.Empty),
+                        new XAttribute(IpAttributeName, config.RemoteConnection.Ip ?? string.Empty),
+                        new XAttribute(PortAttributeName, config.RemoteConnection.Port ?? string.Empty),
+                        new XAttribute(PasswordAttributeName, config.RemoteConnection.Password ?? string.Empty)));
+                }
+
                 foreach (ProfileConfig profile in config.Profiles)
                 {
                     XElement profileElement = new XElement(ProfileElementName,
@@ -102,13 +142,13 @@ namespace WatchTower
                     root.Add(profileElement);
                 }
 
-                Directory.CreateDirectory(Path.GetDirectoryName(FilePath));
+                Directory.CreateDirectory(Path.GetDirectoryName(filePath));
 
-                string tempPath = FilePath + ".tmp";
+                string tempPath = filePath + ".tmp";
                 new XDocument(root).Save(tempPath);
 
-                if (File.Exists(FilePath)) File.Replace(tempPath, FilePath, null);
-                else File.Move(tempPath, FilePath);
+                if (File.Exists(filePath)) File.Replace(tempPath, filePath, null);
+                else File.Move(tempPath, filePath);
 
                 return true;
             }

@@ -21,7 +21,7 @@
             this.profileLabel = new System.Windows.Forms.Label();
             this.profilesComboBox = new System.Windows.Forms.ComboBox();
             this.refreshProfilesButton = new System.Windows.Forms.Button();
-            this.profileConfigPanel = new System.Windows.Forms.Panel();
+            this.profileConfigPanel = new WatchTower.ProfileConfigPanel();
             this.mainToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
@@ -96,7 +96,7 @@
         private System.Windows.Forms.Label profileLabel;
         private System.Windows.Forms.ComboBox profilesComboBox;
         private System.Windows.Forms.Button refreshProfilesButton;
-        private System.Windows.Forms.Panel profileConfigPanel;
+        private WatchTower.ProfileConfigPanel profileConfigPanel;
         private System.Windows.Forms.ToolTip mainToolTip;
     }
 }

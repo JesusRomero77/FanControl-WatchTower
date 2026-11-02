@@ -75,7 +75,7 @@ namespace WatchTower
             { TextId.RemoteSensorsNote, "Fill in at least one of these two fields: remote PC name or remote PC IP. " +
                 "If you fill in both, the IP is used. The port must match the one set in DataServer " +
                 "(configured by running WatchTower on the PC where DataServer is installed). " +
-                "Leave the port empty to use the default (8765). Restart the FanControl interface after saving for the plugin to read the changes." },
+                "Leave it empty to use the default (8765). Restart the FanControl interface after saving for the plugin to read the changes." },
             { TextId.DataServerPort, "Port:" },
             { TextId.DataServerPortHelp, "Between 1 and 65535. Leave empty to use the default (8765)." },
             { TextId.DataServerPassword, "Password:" },
@@ -85,7 +85,7 @@ namespace WatchTower
                 "Restart the FanControl interface after saving for the plugin to read the changes." },
             { TextId.DataServerPluginMissing, "The DataServer plugin (FanControl.DataServer.dll) was not found in FanControl's Plugins folder. " +
                 "You can set the options here, but they will have no effect until the plugin is installed." },
-                        { TextId.ErrorTitle, "Error" },
+            { TextId.ErrorTitle, "Error" },
             { TextId.SelectFanControlTitle, "Select the FanControl executable (or a shortcut to it)" },
             { TextId.FanControlFileFilter, "FanControl.exe or shortcut" },
             { TextId.InvalidPathTitle, "Invalid path" },
@@ -101,7 +101,35 @@ namespace WatchTower
             { TextId.DataServerPortInvalid, "The port must be a number between {0} and {1}, or be left empty." },
             { TextId.DataServerPasswordInvalid, "The password can only contain letters, numbers and keyboard symbols, with no spaces or accented characters." },
             { TextId.RemotePort, "Remote PC port:" },
-            { TextId.RemotePortHelp, "Port DataServer listens on at the remote PC.\r\nLeave empty to use the default (8765)." }
+            { TextId.RemotePortHelp, "Port DataServer listens on at the remote PC.\r\nLeave empty to use the default (8765)." },
+            { TextId.EndOfLog, "END OF LOG" },
+            { TextId.ActiveProfile, "ACTIVE PROFILE" },
+            { TextId.ProfileNameLabel, "Name:" },
+            { TextId.LogRemotePc, "Remote PC:" },
+            { TextId.ControlsHeading, "CONTROLS:" },
+            { TextId.SensorsHeading, "SENSORS:" },
+            { TextId.ControlType, "CONTROL" },
+            { TextId.SensorType, "SENSOR" },
+            { TextId.RecordNameLabel, "Name" },
+            { TextId.RecordValueLabel, "Value" },
+            { TextId.RemotePassword, "Password" },
+            { TextId.RecStart, "REC" },
+            { TextId.RecStop, "STOP" },
+            { TextId.RefreshRemoteProfile, "Get the profile from the remote PC" },
+            { TextId.LoggerNeedsAddress, "Fill in the name or the IP of the remote PC." },
+            { TextId.LoggerNeedsPassword, "Type the password set in DataServer on the remote PC." },
+            { TextId.LoggerStatusIdle, "Not recording." },
+            { TextId.LoggerStatusConnecting, "Connecting to the remote PC..." },
+            { TextId.LoggerStatusRecording, "Recording to {0}" },
+            { TextId.LoggerStatusStale, "No new readings. Is the FanControl interface open on the remote PC?" },
+            { TextId.LoggerStatusUnreachable, "Cannot reach the remote PC. Retrying..." },
+            { TextId.LoggerStatusUnreachableShort, "Cannot reach the remote PC." },
+            { TextId.LoggerStatusUnauthorized, "Wrong password. Recording stopped." },
+            { TextId.LoggerStatusUnauthorizedShort, "Wrong password." },
+            { TextId.LoggerStatusFailed, "Error: {0}" },
+            { TextId.LoggerStatusProfileLoaded, "Profile loaded." },
+            { TextId.LoggerStatusNoProfile, "Could not get the profile. If FanControl has just started, wait a few seconds and try again." },
+            { TextId.LoggerStatusBusy, "DataServer is busy. Try again in a moment." }
         };
     }
 
@@ -162,7 +190,7 @@ namespace WatchTower
             { TextId.RemoteIpHelp, "Escribe 'ipconfig' en una consola del PC remoto." },
             { TextId.RemoteSensorsNote, "Rellena al menos uno de estos dos campos: nombre del PC remoto o IP del PC remoto. " +
                 "Si rellenas los dos, se usa la IP. El puerto debe coincidir con el de DataServer " +
-                "(se configura ejecutando WatchTower en el PC donde esté instalado DataServer). Deja el puerto vacío para usar el predeterminado (8765). " +
+                "(se configura ejecutando WatchTower en el PC donde esté instalado DataServer). Déjalo vacío para usar el predeterminado (8765). " +
                 "Reinicia la interfaz de FanControl después de guardar para que el plugin lea los cambios." },
             { TextId.DataServerPort, "Puerto:" },
             { TextId.DataServerPortHelp, "Entre 1 y 65535. Déjalo vacío para usar el predeterminado (8765)." },
@@ -191,7 +219,35 @@ namespace WatchTower
             { TextId.DataServerPasswordInvalid, "La contraseña solo puede contener letras, números y símbolos del teclado, " +
                 "sin espacios ni acentos." },
             { TextId.RemotePort, "Puerto del PC remoto:" },
-            { TextId.RemotePortHelp, "Puerto en el que escucha DataServer en el PC remoto.\r\nDéjalo vacío para usar el predeterminado (8765)." }
+            { TextId.RemotePortHelp, "Puerto en el que escucha DataServer en el PC remoto.\r\nDéjalo vacío para usar el predeterminado (8765)." },
+            { TextId.EndOfLog, "FIN DEL LOG" },
+            { TextId.ActiveProfile, "PERFIL ACTIVO" },
+            { TextId.ProfileNameLabel, "Nombre:" },
+            { TextId.LogRemotePc, "PC remoto:" },
+            { TextId.ControlsHeading, "CONTROLES:" },
+            { TextId.SensorsHeading, "SENSORES:" },
+            { TextId.ControlType, "CONTROL" },
+            { TextId.SensorType, "SENSOR" },
+            { TextId.RecordNameLabel, "Nombre" },
+            { TextId.RecordValueLabel, "Valor" },
+            { TextId.RemotePassword, "Contraseña" },
+            { TextId.RecStart, "GRABAR" },
+            { TextId.RecStop, "PARAR" },
+            { TextId.RefreshRemoteProfile, "Obtener el perfil del PC remoto" },
+            { TextId.LoggerNeedsAddress, "Rellena el nombre o la IP del PC remoto." },
+            { TextId.LoggerNeedsPassword, "Escribe la contraseña que se puso en DataServer en el PC remoto." },
+            { TextId.LoggerStatusIdle, "Sin grabar." },
+            { TextId.LoggerStatusConnecting, "Conectando con el PC remoto..." },
+            { TextId.LoggerStatusRecording, "Grabando en {0}" },
+            { TextId.LoggerStatusStale, "Sin lecturas nuevas. ¿Está abierta la interfaz de FanControl en el PC remoto?" },
+            { TextId.LoggerStatusUnreachable, "No se puede conectar con el PC remoto. Reintentando..." },
+            { TextId.LoggerStatusUnreachableShort, "No se puede conectar con el PC remoto." },
+            { TextId.LoggerStatusUnauthorized, "Contraseña incorrecta. Grabación detenida." },
+            { TextId.LoggerStatusUnauthorizedShort, "Contraseña incorrecta." },
+            { TextId.LoggerStatusFailed, "Error: {0}" },
+            { TextId.LoggerStatusProfileLoaded, "Perfil cargado." },
+            { TextId.LoggerStatusNoProfile, "No se pudo obtener el perfil. Si FanControl acaba de arrancar, espera unos segundos y vuelve a probar." },
+            { TextId.LoggerStatusBusy, "DataServer está ocupado. Vuelve a probar en un momento." }
         };
     }
 }

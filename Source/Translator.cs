@@ -24,9 +24,14 @@ namespace WatchTower
         DataServerPort, DataServerPortHelp, DataServerPassword, DataServerPasswordTooltip, DataServerNote, DataServerPluginMissing,
         ErrorTitle, SelectFanControlTitle, FanControlFileFilter, InvalidPathTitle, InvalidPathMessage, UnsavedChangesMessage,
         CacheReadError, CacheNotFound, ProfileBadFormat, LoggerConfigBadFormat, ConfigFileBadFormat,
-        RemoteIpIncomplete, DataServerPortInvalid, DataServerPasswordInvalid,
-        RemotePort, RemotePortHelp
-
+        RemoteIpIncomplete, DataServerPortInvalid, DataServerPasswordInvalid, RemotePort, RemotePortHelp,
+        EndOfLog, ActiveProfile, ProfileNameLabel, LogRemotePc, ControlsHeading, SensorsHeading,
+        ControlType, SensorType, RecordNameLabel, RecordValueLabel,
+        RemotePassword, RecStart, RecStop, RefreshRemoteProfile, LoggerNeedsAddress, LoggerNeedsPassword,
+        LoggerStatusIdle, LoggerStatusConnecting, LoggerStatusRecording, LoggerStatusStale,
+        LoggerStatusUnreachable, LoggerStatusUnreachableShort, LoggerStatusUnauthorized,
+        LoggerStatusUnauthorizedShort, LoggerStatusFailed, LoggerStatusProfileLoaded,
+        LoggerStatusNoProfile, LoggerStatusBusy
     }
 
     /// <summary>
@@ -89,6 +94,24 @@ namespace WatchTower
         {
             return _languages.FirstOrDefault(language =>
                 string.Equals(language.Name, languageName, StringComparison.OrdinalIgnoreCase));
+        }
+
+        /// <summary>
+        /// Devuelve el texto en todos los idiomas disponibles (sin repetidos). Sirve para reconocer
+        /// en un archivo un texto que pudo escribirse en un idioma distinto del actual.
+        /// </summary>
+        public static IEnumerable<string> GetTextInAllLanguages(TextId id)
+        {
+            List<string> texts = new List<string>();
+
+            foreach (Language language in _languages)
+            {
+                string text;
+                if (language.Texts.TryGetValue(id, out text) && !texts.Contains(text))
+                    texts.Add(text);
+            }
+
+            return texts;
         }
     }
 }

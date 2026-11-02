@@ -20,9 +20,6 @@ namespace WatchTower
         // Nombre del plugin, que es el título de la pestaña. No se traduce.
         private const string TabTitle = "DataServer";
 
-        // Nombre del archivo del plugin dentro de la carpeta Plugins de FanControl.
-        private const string PluginFileName = "FanControl.DataServer.dll";
-
         // Carpeta de FanControl indicada por el usuario; null mientras no la haya indicado.
         private string _fanControlFolder;
 
@@ -128,8 +125,8 @@ namespace WatchTower
         // su subcarpeta (como la deja el instalador de plugins de FanControl).
         private static bool IsPluginInstalled(string fanControlFolder)
         {
-            return File.Exists(Path.Combine(fanControlFolder, "Plugins", PluginFileName)) || 
-            File.Exists(Path.Combine(fanControlFolder, "Plugins", "DataServer", PluginFileName));
+            return File.Exists(Path.Combine(fanControlFolder, "Plugins", "FanControl.DataServer.dll")) ||
+                   File.Exists(Path.Combine(fanControlFolder, "Plugins", "DataServer", "FanControl.DataServer.dll"));
         }
 
         // Al volver a esta pestaña se repite la comprobación, por si el usuario ha instalado el plugin
