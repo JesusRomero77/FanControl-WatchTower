@@ -73,9 +73,8 @@ namespace WatchTower
             { TextId.RemoteIp, "Remote PC IP:" },
             { TextId.RemoteIpHelp, "Type 'ipconfig' in a console on the remote PC." },
             { TextId.RemoteSensorsNote, "Fill in at least one of these two fields: remote PC name or remote PC IP. " +
-                "If you fill in both, the IP is used. The port must match the one set in DataServer " +
-                "(configured by running WatchTower on the PC where DataServer is installed). " +
-                "Leave it empty to use the default (8765). Restart the FanControl interface after saving for the plugin to read the changes." },
+                "If you fill in both, the IP is used. The port and the password must match the ones set in DataServer " +
+                "(configured by running WatchTower on the PC where DataServer is installed). Leave the port empty to use the default (8765)." },
             { TextId.DataServerPort, "Port:" },
             { TextId.DataServerPortHelp, "Between 1 and 65535. Leave empty to use the default (8765)." },
             { TextId.DataServerPassword, "Password:" },
@@ -189,9 +188,9 @@ namespace WatchTower
             { TextId.RemoteIp, "IP del PC remoto:" },
             { TextId.RemoteIpHelp, "Escribe 'ipconfig' en una consola del PC remoto." },
             { TextId.RemoteSensorsNote, "Rellena al menos uno de estos dos campos: nombre del PC remoto o IP del PC remoto. " +
-                "Si rellenas los dos, se usa la IP. El puerto debe coincidir con el de DataServer " +
-                "(se configura ejecutando WatchTower en el PC donde esté instalado DataServer). Déjalo vacío para usar el predeterminado (8765). " +
-                "Reinicia la interfaz de FanControl después de guardar para que el plugin lea los cambios." },
+                "Si rellenas los dos, se usa la IP. El puerto y la contraseña deben coincidir con los de DataServer " +
+                "(se configuran ejecutando WatchTower en el PC donde esté instalado DataServer). " +
+                "Deja el puerto vacío para usar el predeterminado (8765)." },
             { TextId.DataServerPort, "Puerto:" },
             { TextId.DataServerPortHelp, "Entre 1 y 65535. Déjalo vacío para usar el predeterminado (8765)." },
             { TextId.DataServerPassword, "Contraseña:" },

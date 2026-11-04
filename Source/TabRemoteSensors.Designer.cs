@@ -27,6 +27,8 @@
             this.portLabel = new System.Windows.Forms.Label();
             this.portTextBox = new System.Windows.Forms.TextBox();
             this.portHelpLabel = new System.Windows.Forms.Label();
+            this.passwordLabel = new System.Windows.Forms.Label();
+            this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.noteLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -127,16 +129,33 @@
             this.portHelpLabel.TabIndex = 9;
             this.portHelpLabel.UseMnemonic = false;
             // 
+            // passwordLabel
+            // 
+            this.passwordLabel.AutoSize = true;
+            this.passwordLabel.Location = new System.Drawing.Point(50, 333);
+            this.passwordLabel.Name = "passwordLabel";
+            this.passwordLabel.Size = new System.Drawing.Size(120, 21);
+            this.passwordLabel.TabIndex = 10;
+            this.passwordLabel.UseMnemonic = false;
+            // 
+            // passwordTextBox
+            // 
+            this.passwordTextBox.Location = new System.Drawing.Point(290, 330);
+            this.passwordTextBox.MaxLength = 64;
+            this.passwordTextBox.Name = "passwordTextBox";
+            this.passwordTextBox.Size = new System.Drawing.Size(300, 29);
+            this.passwordTextBox.TabIndex = 11;
+            // 
             // noteLabel
             // 
             this.noteLabel.AutoSize = true;
             this.noteLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.noteLabel.ForeColor = System.Drawing.Color.Black;
-            this.noteLabel.Location = new System.Drawing.Point(50, 350);
+            this.noteLabel.Location = new System.Drawing.Point(50, 380);
             this.noteLabel.MaximumSize = new System.Drawing.Size(685, 0);
             this.noteLabel.Name = "noteLabel";
             this.noteLabel.Size = new System.Drawing.Size(685, 21);
-            this.noteLabel.TabIndex = 10;
+            this.noteLabel.TabIndex = 12;
             this.noteLabel.UseMnemonic = false;
             // 
             // TabRemoteSensors
@@ -154,6 +173,8 @@
             this.Controls.Add(this.portTextBox);
             this.Controls.Add(this.portLabel);
             this.Controls.Add(this.warningLabel);
+            this.Controls.Add(this.passwordTextBox);
+            this.Controls.Add(this.passwordLabel);
             this.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "TabRemoteSensors";
@@ -175,6 +196,9 @@
         private System.Windows.Forms.Label portLabel;
         private System.Windows.Forms.TextBox portTextBox;
         private System.Windows.Forms.Label portHelpLabel;
+        private System.Windows.Forms.Label passwordLabel;
+        private System.Windows.Forms.TextBox passwordTextBox;
         private System.Windows.Forms.Label noteLabel;
+
     }
 }

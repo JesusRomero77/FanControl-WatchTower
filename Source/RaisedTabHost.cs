@@ -115,16 +115,34 @@ namespace WatchTower
         private Rectangle ContentFrame =>
             new Rectangle(SideMargin, HeaderHeight, Width - 2 * SideMargin, Height - HeaderHeight - SideMargin);
 
-        // Reparte las pestañas de izquierda a derecha, sin huecos entre ellas. El ancho de cada una
-        // es el del texto más el relleno a los lados.
+        // Reparte las pestañas de izquierda a derecha, sin huecos entre ellas. Cada una mide lo que su
+        // texto más el relleno a los lados, y lo que falta hasta el borde derecho del marco se reparte a
+        // partes iguales entre todas (los píxeles sobrantes, de uno en uno, a las primeras). Así la última
+        // pestaña termina siempre justo donde termina el marco. Si no hay sitio (ventana muy estrecha) no
+        // se encogen: se quedan en su ancho natural.
         private void LayoutTabs()
         {
+            if (_pages.Count == 0) return;
+
+            int[] naturalWidths = new int[_pages.Count];
+            int totalWidth = 0;
+
+            for (int i = 0; i < _pages.Count; i++)
+            {
+                naturalWidths[i] = TextRenderer.MeasureText(_pages[i].Title ?? "", _tabFont).Width + 2 * TabPaddingX;
+                totalWidth += naturalWidths[i];
+            }
+
+            int extraWidth = Math.Max(0, ContentFrame.Width - totalWidth);
+            int sharePerTab = extraWidth / _pages.Count;
+            int remainder = extraWidth % _pages.Count;
+
             int x = ContentFrame.Left;
 
-            foreach (PageEntry page in _pages)
+            for (int i = 0; i < _pages.Count; i++)
             {
-                int width = TextRenderer.MeasureText(page.Title ?? "", _tabFont).Width + 2 * TabPaddingX;
-                page.TabBounds = new Rectangle(x, 0, width, HeaderHeight);
+                int width = naturalWidths[i] + sharePerTab + (i < remainder ? 1 : 0);
+                _pages[i].TabBounds = new Rectangle(x, 0, width, HeaderHeight);
                 x += width;
             }
         }
@@ -134,7 +152,7 @@ namespace WatchTower
         protected override void OnLayout(LayoutEventArgs levent)
         {
             base.OnLayout(levent);
-
+            LayoutTabs();
             Rectangle frame = ContentFrame;
             _contentPanel.Bounds = new Rectangle(
                 frame.Left + FrameThickness, frame.Top + FrameThickness,
