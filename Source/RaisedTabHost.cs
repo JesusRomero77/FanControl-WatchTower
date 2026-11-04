@@ -147,8 +147,8 @@ namespace WatchTower
             }
         }
 
-        // Al cambiar el tamaño se recoloca el panel de contenido dentro del marco, dejando sitio
-        // para las dos líneas del relieve.
+        // Al cambiar el tamaño se recolocan las pestañas (para que la última llegue al borde del marco) y el
+        // panel de contenido dentro del marco, dejando sitio para las dos líneas del relieve.
         protected override void OnLayout(LayoutEventArgs levent)
         {
             base.OnLayout(levent);

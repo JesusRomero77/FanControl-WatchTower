@@ -9,8 +9,8 @@ namespace WatchTower
 {
     /// <summary>
     /// Pestaña de configuración del plugin RemoteSensors: nombre y/o IP del PC remoto donde corre
-    /// DataServer, y puerto en el que escucha. Lee y escribe RemoteSensorsConfig.xml, el archivo
-    /// que usa el plugin.
+    /// DataServer, puerto en el que escucha y contraseña que debe coincidir con la de DataServer. Lee y
+    /// escribe RemoteSensorsConfig.xml, el archivo que usa el plugin.
     /// </summary>
     public partial class TabRemoteSensors : UserControl, IConfiguratorTab
     {

@@ -123,8 +123,8 @@ namespace WatchTower
             pcNameLabel.Text = Translator.Translate(TextId.RemotePcName);
             ipLabel.Text = Translator.Translate(TextId.RemoteIp);
             portLabel.Text = Translator.Translate(TextId.RemotePort);
-            passwordLabel.Text = Translator.Translate(TextId.RemotePassword);
-            profileLabel.Text = Translator.Translate(TextId.Profile) + ":";
+            passwordLabel.Text = Translator.Translate(TextId.DataServerPassword);
+            profileLabel.Text = Translator.Translate(TextId.Profile);
             mainToolTip.SetToolTip(refreshProfileButton, Translator.Translate(TextId.RefreshRemoteProfile));
 
             UpdateRecButton();

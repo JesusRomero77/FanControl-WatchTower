@@ -27,7 +27,7 @@ namespace WatchTower
         RemoteIpIncomplete, DataServerPortInvalid, DataServerPasswordInvalid, RemotePort, RemotePortHelp,
         EndOfLog, ActiveProfile, ProfileNameLabel, LogRemotePc, ControlsHeading, SensorsHeading,
         ControlType, SensorType, RecordNameLabel, RecordValueLabel,
-        RemotePassword, RecStart, RecStop, RefreshRemoteProfile, LoggerNeedsAddress, LoggerNeedsPassword,
+        RecStart, RecStop, RefreshRemoteProfile, LoggerNeedsAddress, LoggerNeedsPassword,
         LoggerStatusIdle, LoggerStatusConnecting, LoggerStatusRecording, LoggerStatusStale,
         LoggerStatusUnreachable, LoggerStatusUnreachableShort, LoggerStatusUnauthorized,
         LoggerStatusUnauthorizedShort, LoggerStatusFailed, LoggerStatusProfileLoaded,
